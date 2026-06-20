@@ -1,12 +1,16 @@
 using UnityEngine;
 
+// This class is attached to the crank
+// It keeps track of how much the crank has rotated in total and in whichever direction it is meant to go in
+
 public class S_CrankRotations : MonoBehaviour
 {
-    [SerializeField] private float totalRotation = 0f;
+    private float totalRotation = 0f;
     private Vector3 lastPoint;
 
     public bool clockwise = true;
-    [SerializeField] private float rotationInDirection = 0f; 
+    private float rotationInDirection = 0f; 
+
 
     void Start()
     {
@@ -16,10 +20,14 @@ public class S_CrankRotations : MonoBehaviour
 
     void Update()
     {
+        // Find where the crank is facing
         Vector3 facing = transform.TransformDirection(Vector3.right);
         facing.z = 0;
 
+        // Get the angle between the current direction being faced and the one from last update
         float angle = Vector3.Angle(lastPoint, facing);
+
+        // Make sure the angle stays positive
         if (Vector3.Cross(lastPoint, facing).z < 0 )
         {
             angle *= -1;
@@ -28,16 +36,19 @@ public class S_CrankRotations : MonoBehaviour
         totalRotation += angle;
         lastPoint = facing;
 
+        // If the new angle is positive (meaning it is turning anti-clockwise) and this is the intended direction
         if (angle > 0 && !clockwise)
         {
             rotationInDirection += angle;
         }
+        // If the new angle is negative (meaning it is turning clockwise) and this is the intended direction
         else if (angle < 0 && clockwise)
         {
-            rotationInDirection -= angle;
+            rotationInDirection -= angle; // Taking away the angle keeps this positive, which is better for use in the progress bar
         }
     }
 
+    // This is used by S_Bar for use in the progress bar
     public float ReturnRotation()
     {
         return rotationInDirection;

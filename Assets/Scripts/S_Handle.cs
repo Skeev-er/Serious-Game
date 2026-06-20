@@ -1,10 +1,13 @@
 using UnityEngine;
 
+// This class is attached to the object to grab (the handle)
+// It reminds the handle that it should target the new mouse position at every frame
+
 public class S_Handle : MonoBehaviour
 {
     private TargetJoint2D joint;
 
-    void FixedUpdate()
+    void Update()
     {
         if (gameObject.GetComponent<TargetJoint2D>() != null)
         {

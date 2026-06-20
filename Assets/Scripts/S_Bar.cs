@@ -1,6 +1,9 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
+
+// This class is attached to the bar in UI
+// The fill increases according to the player turning the crank in the right direction
+// The fill decreases by a set amount on update
 
 public class S_Bar : MonoBehaviour
 {
@@ -25,6 +28,14 @@ public class S_Bar : MonoBehaviour
         slider.value = 0;
     }
 
+    private void Update()
+    {
+        IncreaseAmount();
+        DecreaseAmount();
+
+        SetBar(amount);
+    }
+
     public void SetBar(float value)
     {
         slider.value = value;
@@ -47,8 +58,6 @@ public class S_Bar : MonoBehaviour
                 amount = slider.maxValue;
             }
         }
-
-        
     }
 
     private void DecreaseAmount()
@@ -57,13 +66,5 @@ public class S_Bar : MonoBehaviour
         {
             amount -= decreaseRate;
         }
-    }
-
-    private void Update()
-    {
-        IncreaseAmount();
-        DecreaseAmount();
-
-        SetBar(amount);
     }
 }

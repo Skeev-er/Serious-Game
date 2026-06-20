@@ -1,5 +1,10 @@
 using UnityEngine;
 
+// This class is part of the main scene
+// It checks for if the player clicks on any objects on the "Moveable" layer
+// If they do, create a joint so that the object follows the mouse
+// Also attach a line renderer to the mouse to show this force
+
 public class S_GrabObject : MonoBehaviour
 {
     private GameObject objectToSpin;
@@ -53,5 +58,4 @@ public class S_GrabObject : MonoBehaviour
             }
         }
     }
-
 }
