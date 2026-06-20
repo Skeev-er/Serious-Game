@@ -1,16 +1,13 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static UnityEditor.Progress;
 
-public class S_PlayerMovement : MonoBehaviour
+public class S_GrabObject : MonoBehaviour
 {
     private GameObject objectToSpin;
     private Rigidbody2D body;
     private bool dragging;
     public GameObject mouse;
     private Rigidbody2D mouseBody;
-    private SpringJoint2D joint;
-    private LineRenderer visualJoint;
+    private TargetJoint2D joint;
 
     private void Start()
     {
@@ -35,12 +32,11 @@ public class S_PlayerMovement : MonoBehaviour
                 // You are now dragging
                 dragging = true;
 
-                joint = objectToSpin.AddComponent<SpringJoint2D>();
-                joint.connectedBody = mouseBody;
-                joint.anchor = objectToSpin.transform.position;
-                joint.autoConfigureConnectedAnchor = true;
+                joint = objectToSpin.AddComponent<TargetJoint2D>();
+                joint.target = mouseBody.position;
+                objectToSpin.SendMessage("UpdateMouseLocation");
 
-                mouse.SendMessage("CreateLineRenderer", hit.transform.position);
+                mouse.SendMessage("CreateLineRenderer", body);
             }
         }
 
