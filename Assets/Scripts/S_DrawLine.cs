@@ -5,34 +5,38 @@ using UnityEngine;
 
 public class S_DrawLine : MonoBehaviour
 {
-    private LineRenderer lineRenderer;
+    private LineRenderer lr;
     public Material lineMaterial;
     private Rigidbody2D objectBody;
 
     void Update()
     {
+        // Keep the gameObject centred on the mouse at all times
         transform.position = Camera.main.ScreenToWorldPoint (new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
 
+        // If dragging
         if (gameObject.GetComponent<LineRenderer>() != null && objectBody != null)
         {
-            lineRenderer.SetPosition(0, objectBody.position);
-            lineRenderer.SetPosition(1, transform.position);
+            // Set the start and end points of the line
+            lr.SetPosition(0, objectBody.position);
+            lr.SetPosition(1, transform.position);
         }
     }
 
+    // This is called by S_GrabObject when dragging starts
     void CreateLineRenderer(Rigidbody2D objectToSpin)
     {
         objectBody = objectToSpin;
 
-        lineRenderer = gameObject.AddComponent<LineRenderer>();
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, objectBody.position);
+        lr = gameObject.AddComponent<LineRenderer>();
+        lr.SetPosition(0, transform.position);
+        lr.SetPosition(1, objectBody.position);
 
-        lineRenderer.startWidth = 0.3f;
-        lineRenderer.endWidth = 0.15f;
+        lr.startWidth = 0.3f;
+        lr.endWidth = 0.15f;
 
-        lineRenderer.material = lineMaterial;
-        lineRenderer.startColor = new Color(1f, 1f, 1f, 0.5f); // White with half opacity
-        lineRenderer.endColor = new Color(0.5f, 0.5f, 0.5f, 0.5f); // Gray with half opacity
+        lr.material = lineMaterial;
+        lr.startColor = new Color(1f, 1f, 1f, 0.5f); // White with half opacity
+        lr.endColor = new Color(0.5f, 0.5f, 0.5f, 0.5f); // Gray with half opacity
     }
 }

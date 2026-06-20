@@ -37,9 +37,7 @@ public class S_GrabObject : MonoBehaviour
                 // You are now dragging
                 dragging = true;
 
-                joint = objectToSpin.AddComponent<TargetJoint2D>();
-                joint.target = mouseBody.position;
-                objectToSpin.SendMessage("UpdateMouseLocation");
+                objectToSpin.SendMessage("CreateTargetJoint");
 
                 mouse.SendMessage("CreateLineRenderer", body);
             }
@@ -53,7 +51,7 @@ public class S_GrabObject : MonoBehaviour
             {
                 // You are no longer dragging
                 dragging = false;
-                Destroy(joint);
+                Destroy(objectToSpin.GetComponent<TargetJoint2D>());
                 Destroy(mouse.GetComponent<LineRenderer>());
             }
         }
