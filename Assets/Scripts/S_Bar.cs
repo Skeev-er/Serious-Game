@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,9 +9,10 @@ using UnityEngine.UI;
 public class S_Bar : MonoBehaviour
 {
     private Slider slider;
+    public Gradient gradient;
     public Image fill;
 
-    public float decreaseRate = 0.01f; // Have a max of around 0.07, but only if the toughness is low enough
+    public float decreaseRate = 0.005f; // Have a max of around 0.07, but only if the toughness is low enough
     private float increaseBy = 0f;
 
     private float amount = 0f;
@@ -22,24 +24,49 @@ public class S_Bar : MonoBehaviour
 
     public float toughness = 40; // Have a max of around 80, but only is the decrease rate stays near 0.01
 
+    private bool draining = false;
+    private float drainRate = 0.1f;
+
+    private S_Target target;
+    public TextMeshProUGUI scoreText;
+
+    public SO_GameData gameData;
+
     private void Start()
     {
         slider = GetComponent<Slider>();
         slider.value = 0;
+        fill.color = gradient.Evaluate(slider.maxValue);
+        target = GetComponentInChildren<S_Target>();
+        gameData.score = 0;
     }
 
     private void Update()
     {
-        IncreaseAmount();
-        DecreaseAmount();
+        // If not draining, increase and decrease the bar as normal
+        if (!draining)
+        {
+            IncreaseAmount();
+            DecreaseAmount();
+        }
+        // If draining, take control from the player and drain the bar
+        else if (draining)
+        {
+            amount -= drainRate;
 
-        SetBar(amount);
+            // Stop draining when the bar is empty
+            if (slider.value == 0)
+            {
+                draining = false;
+            }
+        }
+        // The bar colour depends on the gradient and the amount filled 
+        fill.color = gradient.Evaluate(slider.normalizedValue);
+
+        // Set the bar
+        slider.value = amount;
     }
 
-    public void SetBar(float value)
-    {
-        slider.value = value;
-    }
 
     private void IncreaseAmount()
     {
@@ -74,6 +101,18 @@ public class S_Bar : MonoBehaviour
         if (amount > slider.minValue)
         {
             amount -= decreaseRate;
+        }
+    }
+
+    // Called by S_SliderHandle when it reaches the bottom
+    public void DrainBars()
+    {
+        draining = true;
+
+        if (target.GetBarWithinTarget() == true)
+        {
+            gameData.score += 1;
+            scoreText.text = "SCORE: " + gameData.score;
         }
     }
 }

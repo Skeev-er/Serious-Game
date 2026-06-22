@@ -10,6 +10,7 @@ public class S_CrankRotations : MonoBehaviour
 
     public bool clockwise = true;
     private float rotationInDirection = 0f; 
+    private float rotationAwayFromDirection = 0f;
 
 
     void Start()
@@ -36,21 +37,34 @@ public class S_CrankRotations : MonoBehaviour
         totalRotation += angle;
         lastPoint = facing;
 
-        // If the new angle is positive (meaning it is turning anti-clockwise) and this is the intended direction
-        if (angle > 0 && !clockwise)
+        if (clockwise) // Intended direction is clockwise
         {
-            rotationInDirection += angle;
+            if (angle < 0) // Going clockwise
+            {
+                rotationInDirection -= angle; // Taking away the angle keeps this positive, which is better for use in the progress bar
+            }
+            else if (angle > 0) // Going anticlockwise
+            {
+                rotationAwayFromDirection += angle;
+            }
         }
-        // If the new angle is negative (meaning it is turning clockwise) and this is the intended direction
-        else if (angle < 0 && clockwise)
+
+        else if (!clockwise) // Intended direction is anticlockwise
         {
-            rotationInDirection -= angle; // Taking away the angle keeps this positive, which is better for use in the progress bar
+            if (angle > 0) // Going anticlockwise
+            {
+                rotationInDirection += angle;
+            }
+            else if (angle < 0) // Going clockwise
+            {
+                rotationAwayFromDirection -= angle;
+            }
         }
     }
 
     // This is used by S_Bar for use in the progress bar
     public float ReturnRotation()
     {
-        return rotationInDirection;
+        return rotationInDirection - rotationAwayFromDirection;
     }
 }
