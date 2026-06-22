@@ -30,7 +30,7 @@ public class S_Bar : MonoBehaviour
     private S_Target target;
     public TextMeshProUGUI scoreText;
 
-    public SO_GameData gameData;
+    private S_BarManager barManager;
 
     private void Start()
     {
@@ -38,7 +38,7 @@ public class S_Bar : MonoBehaviour
         slider.value = 0;
         fill.color = gradient.Evaluate(slider.maxValue);
         target = GetComponentInChildren<S_Target>();
-        gameData.score = 0;
+        barManager = GetComponentInParent<S_BarManager>();
     }
 
     private void Update()
@@ -109,10 +109,12 @@ public class S_Bar : MonoBehaviour
     {
         draining = true;
 
+        // If the target was hit, tell the bar manager to add 1 to the combo. Otherwise, it has missed
+        int targetHit = 0;
         if (target.GetBarWithinTarget() == true)
         {
-            gameData.score += 1;
-            scoreText.text = "SCORE: " + gameData.score;
+            targetHit = 1;
         }
+        barManager.Combo(targetHit);
     }
 }

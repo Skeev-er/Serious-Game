@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// This class is attached to each target on the bars
+
 public class S_Target : MonoBehaviour
 {
     private float furthestLeft = 3.012f;
@@ -13,6 +15,7 @@ public class S_Target : MonoBehaviour
     {
         targetJoint = GetComponent<TargetJoint2D>();
 
+        // Upon starting the game, randomise the targets positions along the bars
         RandomPos();
     }
 
@@ -21,7 +24,7 @@ public class S_Target : MonoBehaviour
         targetJoint.target = new Vector2 (Random.Range(furthestLeft, furthestRight), transform.position.y);
     }
 
-
+    // Check for if the end of the fill bars are within the target or not
     private void OnTriggerEnter2D(Collider2D collision)
     {
         barWithinTarget = true;

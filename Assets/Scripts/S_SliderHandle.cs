@@ -14,7 +14,7 @@ public class S_SliderHandle : MonoBehaviour
     public SpriteRenderer bottomLED;
 
     public S_Bar[] bars;
-    public S_Target[] targets;
+
 
     private void Start()
     {
@@ -40,7 +40,6 @@ public class S_SliderHandle : MonoBehaviour
             for (int i = 0; i < bars.Length; i++)
             {
                 bars[i].DrainBars();
-                targets[i].RandomPos(); // Should be an equal number of targets as there is bars
             }
         }
     }
