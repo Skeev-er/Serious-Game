@@ -7,8 +7,8 @@ public class S_SliderHandle : MonoBehaviour
 {
     private bool atTop = true;
 
-    public float maxHeight = -0.25f;
-    public float minHeight = -3.25f;
+    public float maxHeight = -0.64f; // These depend on the handle's actualy Y position, which is not accurate when a child of the rail
+    public float minHeight = -3.3f;
 
     public SpriteRenderer topLED;
     public SpriteRenderer bottomLED;

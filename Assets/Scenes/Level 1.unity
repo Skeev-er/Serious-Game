@@ -2508,11 +2508,11 @@ Transform:
   m_GameObject: {fileID: 1100102196}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.362, z: 0}
+  m_LocalPosition: {x: 4.684, y: -0.7910001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2122046634}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1100102199
 BoxCollider2D:
@@ -2612,8 +2612,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e74289480583a348bf98783eee82c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_SliderHandle
-  maxHeight: -0.25
-  minHeight: -3.25
+  maxHeight: -0.64
+  minHeight: -3.3
   topLED: {fileID: 1969639030}
   bottomLED: {fileID: 1685011702}
   bars:
@@ -3384,11 +3384,11 @@ Transform:
   m_GameObject: {fileID: 1685011701}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.27, y: -1.25, z: 0}
+  m_LocalPosition: {x: 6.954, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2122046634}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1838069417
 GameObject:
@@ -3842,11 +3842,11 @@ Transform:
   m_GameObject: {fileID: 1969639029}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.271, y: 1.3429999, z: 0}
+  m_LocalPosition: {x: 6.955, y: -0.40699995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2122046634}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2122046632
 GameObject:
@@ -3935,13 +3935,10 @@ Transform:
   m_GameObject: {fileID: 2122046632}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.684, y: -1.75, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 4.684, y: -1.991, z: 0}
+  m_LocalScale: {x: 1, y: 0.9375, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1100102198}
-  - {fileID: 1969639031}
-  - {fileID: 1685011703}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!234 &2122046635
@@ -3969,8 +3966,8 @@ SliderJoint2D:
     m_MaximumMotorForce: 10000
   m_UseLimits: 1
   m_TranslationLimits:
-    m_LowerTranslation: -1.5
-    m_UpperTranslation: 1.5
+    m_LowerTranslation: -1.35
+    m_UpperTranslation: 1.35
 --- !u!50 &2122046636
 Rigidbody2D:
   serializedVersion: 5
@@ -4012,3 +4009,6 @@ SceneRoots:
   - {fileID: 364159935}
   - {fileID: 809087123}
   - {fileID: 2122046634}
+  - {fileID: 1100102198}
+  - {fileID: 1969639031}
+  - {fileID: 1685011703}
