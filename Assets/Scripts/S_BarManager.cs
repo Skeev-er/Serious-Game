@@ -1,5 +1,9 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+
+// This class is the parent to each bar in the canvas
+// It takes the number of targets hit and scores them, dispaying this on the scoreText 
 
 public class S_BarManager : MonoBehaviour
 {

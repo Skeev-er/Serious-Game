@@ -12,7 +12,7 @@ public class S_Bar : MonoBehaviour
     public Gradient gradient;
     public Image fill;
 
-    public float decreaseRate = 0.005f; // Have a max of around 0.07, but only if the toughness is low enough
+    private float decreaseRate = 0.04f;
     private float increaseBy = 0f;
 
     private float amount = 0f;
@@ -22,10 +22,10 @@ public class S_Bar : MonoBehaviour
     private float lastIncreaseBy = 0f;
     private float temp = 0f;
 
-    public float toughness = 40; // Have a max of around 80, but only is the decrease rate stays near 0.01
+    public float toughness = 40; // How tough it is to increase the bar
 
     private bool draining = false;
-    private float drainRate = 0.1f;
+    private float drainRate = 0.7f;
 
     private S_Target target;
     public TextMeshProUGUI scoreText;
