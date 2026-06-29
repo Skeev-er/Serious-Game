@@ -725,7 +725,7 @@ RelativeJoint2D:
   m_MaxTorque: 10000
   m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.98900986, y: -0.97119}
+  m_LinearOffset: {x: 0.9914398, y: -0.97119}
   m_AngularOffset: -0
 --- !u!50 &245422374
 Rigidbody2D:
@@ -1658,6 +1658,7 @@ MonoBehaviour:
     m_NumColorKeys: 6
     m_NumAlphaKeys: 2
   fill: {fileID: 446090028}
+  decreaseRate: 0.04
   rotations: {fileID: 1120602483}
   toughness: 40
   scoreText: {fileID: 1967203591}
@@ -1871,6 +1872,7 @@ MonoBehaviour:
     m_NumColorKeys: 6
     m_NumAlphaKeys: 2
   fill: {fileID: 625669393}
+  decreaseRate: 0.04
   rotations: {fileID: 1838069418}
   toughness: 40
   scoreText: {fileID: 1967203591}
@@ -2277,7 +2279,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: -0.010064859, y: 0.004025923}
-  m_Radius: 0.23227668
+  m_Radius: 0.28475687
 --- !u!114 &957831739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2290,7 +2292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: febb52af975e14e41bb3be04faec04ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_Object
-  maxForce: 150
+  maxForce: 500
 --- !u!4 &957831740
 Transform:
   m_ObjectHideFlags: 0
@@ -2387,7 +2389,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: -0.010064859, y: 0.004025923}
-  m_Radius: 0.23227668
+  m_Radius: 0.27981868
 --- !u!114 &1043099649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2400,7 +2402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: febb52af975e14e41bb3be04faec04ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_Object
-  maxForce: 150
+  maxForce: 500
 --- !u!4 &1043099650
 Transform:
   m_ObjectHideFlags: 0
@@ -2410,7 +2412,7 @@ Transform:
   m_GameObject: {fileID: 1043099646}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.221, y: -1.199, z: 0}
+  m_LocalPosition: {x: 1.224, y: -1.199, z: 0}
   m_LocalScale: {x: 2.8894, y: 2.8894, z: 2.8894}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2597,7 +2599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: febb52af975e14e41bb3be04faec04ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_Handle
-  maxForce: 50
+  maxForce: 80
 --- !u!114 &1100102202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2779,7 +2781,7 @@ RelativeJoint2D:
   m_MaxTorque: 10000
   m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.97767, y: -0.98819995}
+  m_LinearOffset: {x: 0.99630004, y: -0.98819995}
   m_AngularOffset: -0
 --- !u!114 &1120602483
 MonoBehaviour:
@@ -3050,6 +3052,7 @@ MonoBehaviour:
     m_NumColorKeys: 6
     m_NumAlphaKeys: 2
   fill: {fileID: 731522855}
+  decreaseRate: 0.04
   rotations: {fileID: 245422372}
   toughness: 40
   scoreText: {fileID: 1967203591}
@@ -3159,7 +3162,7 @@ Transform:
   m_GameObject: {fileID: 1561645745}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.207, y: -1.22, z: 0}
+  m_LocalPosition: {x: 1.23, y: -1.22, z: 0}
   m_LocalScale: {x: 2.8894, y: 2.8894, z: 2.8894}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3177,7 +3180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: febb52af975e14e41bb3be04faec04ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_Object
-  maxForce: 150
+  maxForce: 500
 --- !u!58 &1561645751
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3212,8 +3215,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.010064859, y: 0.004025923}
-  m_Radius: 0.23227668
+  m_Offset: {x: -0.010064883, y: 0.0040259124}
+  m_Radius: 0.2840076
 --- !u!1 &1676359771
 GameObject:
   m_ObjectHideFlags: 0
@@ -3540,6 +3543,50 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 957831740}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1867871222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1867871224}
+  - component: {fileID: 1867871223}
+  m_Layer: 0
+  m_Name: S_Escape
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1867871223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867871222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3181382a7a5a7a34ebb0e9ed3d6312c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::S_Escape
+--- !u!4 &1867871224
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867871222}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.41763, y: -0.16163, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1889894544
@@ -4009,3 +4056,4 @@ SceneRoots:
   - {fileID: 1100102198}
   - {fileID: 1969639031}
   - {fileID: 1685011703}
+  - {fileID: 1867871224}

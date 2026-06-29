@@ -6,7 +6,7 @@ using UnityEngine;
 public class S_Handle : MonoBehaviour
 {
     private TargetJoint2D joint;
-    public float maxForce = 0;
+    public float maxForce = 500;
 
     void Update()
     {

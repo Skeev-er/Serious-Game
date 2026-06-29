@@ -4,4 +4,6 @@ using UnityEngine;
 public class SO_GameData : ScriptableObject
 {
     public int score = 0;
+    public int previousComboAmount = 0;
+    public int secondPreviousComboAmount = 0;
 }

@@ -65,6 +65,6 @@ public class S_CrankRotations : MonoBehaviour
     // This is used by S_Bar for use in the progress bar
     public float ReturnRotation()
     {
-        return rotationInDirection - rotationAwayFromDirection;
+        return rotationInDirection;
     }
 }

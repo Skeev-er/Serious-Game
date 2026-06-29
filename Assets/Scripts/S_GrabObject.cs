@@ -11,13 +11,6 @@ public class S_GrabObject : MonoBehaviour
     private Rigidbody2D body;
     private bool dragging;
     public GameObject mouse;
-    private Rigidbody2D mouseBody;
-    private TargetJoint2D joint;
-
-    private void Start()
-    {
-        mouseBody = mouse.GetComponent<Rigidbody2D>();
-    }
 
     void Update()
     {
