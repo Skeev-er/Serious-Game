@@ -15,11 +15,13 @@ public class S_SliderHandle : MonoBehaviour
 
     public S_Bar[] bars;
 
+    private Color screenGreen = new Color32(117, 231, 97, 255);
+    private Color screenRed = new Color32(229, 68, 80, 255);
 
     private void Start()
     {
-        topLED.color = Color.green;
-        bottomLED.color = Color.red;
+        topLED.color = screenGreen;
+        bottomLED.color = screenRed;
     }
 
     private void Update()
@@ -27,15 +29,15 @@ public class S_SliderHandle : MonoBehaviour
         if (transform.position.y >= maxHeight && atTop == false) // At top of rail
         {
             atTop = true;
-            topLED.color = Color.green;
-            bottomLED.color = Color.red;
+            topLED.color = screenGreen;
+            bottomLED.color = screenRed;
         }
         else if (transform.position.y <= minHeight && atTop == true) // At bottom of rail
         {
             atTop = false;
 
-            bottomLED.color = Color.green;
-            topLED.color = Color.red;
+            bottomLED.color = screenGreen;
+            topLED.color = screenRed;
 
             for (int i = 0; i < bars.Length; i++)
             {
