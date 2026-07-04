@@ -12,3 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d2315db8378f24fad7134c2ec83d87, type: 3}
   m_Name: SO_GameData
   m_EditorClassIdentifier: Assembly-CSharp::SO_GameData
+  score: 0
+  previousComboAmount: 0
+  secondPreviousComboAmount: 0
+  upgrade1: 0
+  upgrade2: 0
+  upgrade3: 0
+  upgrade4: 0
+  upgrade5: 0
+  upgrade6: 0
+  upgrade7: 0
+  upgrade8: 0

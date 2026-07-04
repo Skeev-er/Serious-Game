@@ -6,7 +6,7 @@ using System.Collections;
 public class S_ShopButton : MonoBehaviour
 {
     private Button shopButton;
-    private TextMeshProUGUI shopText;
+    private TextMeshProUGUI shopButtonText;
     private Color originalShopTextColour;
 
     private Vector3 originalZoomPosition = new Vector3(0, 0, -10);
@@ -16,13 +16,18 @@ public class S_ShopButton : MonoBehaviour
     private bool openShop = true;
     public Camera cam;
 
+    public GameObject scoreText;
+    public GameObject shopScreenPanel;
+
     void Start()
     {
         shopButton = GetComponent<Button>();
         shopButton.onClick.AddListener(Clicked);
 
-        shopText = GetComponentInChildren<TextMeshProUGUI>();
-        originalShopTextColour = shopText.color;
+        shopButtonText = GetComponentInChildren<TextMeshProUGUI>();
+        originalShopTextColour = shopButtonText.color;
+
+        shopScreenPanel.SetActive(false);
     }
 
     private void Update()
@@ -46,8 +51,19 @@ public class S_ShopButton : MonoBehaviour
             t += Time.deltaTime*1.4f;
             if (t >= 1)
             {
-                // Reset variables to allow this to happen next time
-                clicked = false;
+                if (openShop)
+                {
+                    scoreText.SetActive(false);
+                    shopScreenPanel.SetActive(true);
+                }
+                else
+                {
+                    scoreText.SetActive(true);
+                    shopScreenPanel.SetActive(false);
+                }
+
+                    // Reset variables to allow this to happen next time
+                    clicked = false;
                 openShop = !openShop;
                 t = 0;
                 shopButton.enabled = true;
@@ -58,7 +74,7 @@ public class S_ShopButton : MonoBehaviour
     private void Clicked()
     {
         // Make text invisible and wait before resetting it
-        shopText.color = Color.clear;
+        shopButtonText.color = Color.clear;
         StartCoroutine(ReturnButtonColour(0.85f));
 
         // Allow the update code to run
@@ -71,16 +87,16 @@ public class S_ShopButton : MonoBehaviour
     IEnumerator ReturnButtonColour(float timeBeforeReturn)
     {
         yield return new WaitForSeconds(timeBeforeReturn);
-        shopText.color = originalShopTextColour;
+        shopButtonText.color = originalShopTextColour;
 
         // Set the text according to if you can now open or close the shop
         if (openShop)
         {
-            shopText.text = "OPEN SHOP";
+            shopButtonText.text = "OPEN SHOP";
         }
         else
         {
-            shopText.text = "CLOSE SHOP";
+            shopButtonText.text = "CLOSE SHOP";
         } 
     }
 }

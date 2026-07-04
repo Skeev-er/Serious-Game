@@ -30,7 +30,7 @@ public class S_Bar : MonoBehaviour
     private S_Target target;
     public TextMeshProUGUI scoreText;
 
-    private S_BarManager barManager;
+    private S_ScoreManager scoreManager;
 
     private void Start()
     {
@@ -38,7 +38,7 @@ public class S_Bar : MonoBehaviour
         slider.value = 0;
         fill.color = gradient.Evaluate(slider.maxValue);
         target = GetComponentInChildren<S_Target>();
-        barManager = GetComponentInParent<S_BarManager>();
+        scoreManager = GetComponentInParent<S_ScoreManager>();
     }
 
     private void Update()
@@ -115,6 +115,6 @@ public class S_Bar : MonoBehaviour
         {
             targetHit = 1;
         }
-        barManager.Combo(targetHit);
+        scoreManager.Combo(targetHit);
     }
 }

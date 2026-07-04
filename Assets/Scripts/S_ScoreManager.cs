@@ -5,7 +5,7 @@ using UnityEngine;
 // This class is the parent to each bar in the canvas
 // It takes the number of targets hit and scores them, dispaying this on the scoreText 
 
-public class S_BarManager : MonoBehaviour
+public class S_ScoreManager : MonoBehaviour
 {
     [SerializeField] private int maxCombo = 0;
     public TextMeshProUGUI scoreText;
@@ -165,7 +165,7 @@ public class S_BarManager : MonoBehaviour
     }
 
     // Remove any flavour text for combos and just show the player their score
-    private void ClearComboText()
+    public void ClearComboText()
     {
         comboText = "";
         scoreText.text = "SCORE: " + gameData.score;
