@@ -14,8 +14,10 @@ public class S_ScoreManager : MonoBehaviour
     private bool scored = false;
     private bool scoreComboInvoked = false;
     private string comboText;
+    public float mult = 1;
     private int scoreToAdd = 0;
     private Color greenDisplay = new Color32(117, 231, 97, 255);
+    private bool multiComboUpgrade = false;
 
     private void Start()
     {
@@ -50,7 +52,8 @@ public class S_ScoreManager : MonoBehaviour
                     break;
 
                 case 1:
-                    if (gameData.previousComboAmount == 1)
+                    // If the last combo was also 1 and the multi-combo upgrade has been unlocked
+                    if (gameData.previousComboAmount == 1 && multiComboUpgrade)
                     {
                         if (gameData.secondPreviousComboAmount == 1)
                         {
@@ -75,8 +78,8 @@ public class S_ScoreManager : MonoBehaviour
                     break;
 
                 case 2:
-                    // If the last combo was also 2
-                    if (gameData.previousComboAmount == 2)
+                    // If the last combo was also 2 and the multi-combo upgrade has been unlocked
+                    if (gameData.previousComboAmount == 2 && multiComboUpgrade)
                     {
                         // If the combo before the last combo was also 2
                         if (gameData.secondPreviousComboAmount == 2)
@@ -102,8 +105,8 @@ public class S_ScoreManager : MonoBehaviour
                     break;
 
                 case 3:
-                    // If the last combo was also 3
-                    if (gameData.previousComboAmount == 3)
+                    // If the last combo was also 3 and the multi-combo upgrade has been unlocked
+                    if (gameData.previousComboAmount == 3 && multiComboUpgrade)
                     {
                         // If the combo before the last combo was also 3
                         if (gameData.secondPreviousComboAmount == 3)
@@ -132,6 +135,8 @@ public class S_ScoreManager : MonoBehaviour
                     break;
             }
 
+            // Multiply score by mult
+            scoreToAdd = Mathf.RoundToInt(scoreToAdd * mult);
             gameData.score += scoreToAdd;
             scoreText.text = "SCORE:+" + scoreToAdd + "\n" + comboText;
 
@@ -188,5 +193,18 @@ public class S_ScoreManager : MonoBehaviour
                 scoreText.color = Color.clear;
             }    
         }
+    }
+
+    // These are called by S_UpgradeManager
+    public void MultiComboUnlock()
+    {
+        multiComboUpgrade = true;
+        gameData.previousComboAmount = 0;
+        gameData.secondPreviousComboAmount = 0;
+    }
+
+    public void SetMult(float multValue)
+    {
+        mult = multValue;
     }
 }

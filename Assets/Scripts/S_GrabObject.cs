@@ -9,7 +9,7 @@ public class S_GrabObject : MonoBehaviour
 {
     private GameObject objectToSpin;
     private Rigidbody2D body;
-    private bool dragging;
+    public bool dragging;
     public GameObject mouse;
 
     void Update()

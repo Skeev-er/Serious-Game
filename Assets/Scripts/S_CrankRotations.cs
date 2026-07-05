@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class S_CrankRotations : MonoBehaviour
 {
-    private float totalRotation = 0f;
     private Vector3 lastPoint;
 
     public bool clockwise = true;
     private float rotationInDirection = 0f; 
     private float rotationAwayFromDirection = 0f;
 
+    public bool reverseUpgrade = false;
+
+    public S_GrabObject grabObject;
 
     void Start()
     {
@@ -34,10 +36,9 @@ public class S_CrankRotations : MonoBehaviour
             angle *= -1;
         }
 
-        totalRotation += angle;
         lastPoint = facing;
 
-        if (clockwise) // Intended direction is clockwise
+        if (clockwise && grabObject.dragging) // Intended direction is clockwise
         {
             if (angle < 0) // Going clockwise
             {
@@ -49,7 +50,7 @@ public class S_CrankRotations : MonoBehaviour
             }
         }
 
-        else if (!clockwise) // Intended direction is anticlockwise
+        else if (!clockwise && grabObject.dragging) // Intended direction is anticlockwise
         {
             if (angle > 0) // Going anticlockwise
             {
@@ -65,6 +66,20 @@ public class S_CrankRotations : MonoBehaviour
     // This is used by S_Bar for use in the progress bar
     public float ReturnRotation()
     {
-        return rotationInDirection;
+        if (!reverseUpgrade)
+        {
+            return rotationInDirection;
+        }
+        else
+        {
+            // Allow the crank rotating backwards to take away from final value (decreasing bar)
+            return rotationInDirection - rotationAwayFromDirection;
+        }
+    }
+
+    // Called by S_UpgradeManager
+    public void ReverseUnlock()
+    {
+        reverseUpgrade = true;
     }
 }

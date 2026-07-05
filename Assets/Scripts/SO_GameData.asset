@@ -15,11 +15,3 @@ MonoBehaviour:
   score: 0
   previousComboAmount: 0
   secondPreviousComboAmount: 0
-  upgrade1: 0
-  upgrade2: 0
-  upgrade3: 0
-  upgrade4: 0
-  upgrade5: 0
-  upgrade6: 0
-  upgrade7: 0
-  upgrade8: 0

@@ -12,7 +12,7 @@ public class S_Bar : MonoBehaviour
     public Gradient gradient;
     public Image fill;
 
-    [SerializeField] private float decreaseRate = 0.04f;
+    private float decreaseRate = 0.04f;
     private float increaseBy = 0f;
 
     private float amount = 0f;
@@ -31,6 +31,9 @@ public class S_Bar : MonoBehaviour
     public TextMeshProUGUI scoreText;
 
     private S_ScoreManager scoreManager;
+
+    private float fillRateMult = 1;
+    private bool firstFrameWithUpgrade = false;
 
     private void Start()
     {
@@ -75,19 +78,29 @@ public class S_Bar : MonoBehaviour
         {
             // Get the rotation in the correct direction from the crank, then divide it by toughness
             // Keep in mind 1 full rotation in the correct direction returns 360 
-            increaseBy = rotations.ReturnRotation() / toughness;
+            increaseBy = rotations.ReturnRotation() / toughness * fillRateMult;
 
             temp = increaseBy;
 
             // Take away last update's rotation to find the difference
-            increaseBy -= lastIncreaseBy;
+            // Apply mult on the first frame after the mult upgrade has been bought
+            if (firstFrameWithUpgrade)
+            {
+                // Displace the increase to increaseBy after it acquires mult
+                increaseBy -= lastIncreaseBy * fillRateMult;
+                firstFrameWithUpgrade = false;
+            }
+            else
+            {
+                increaseBy -= lastIncreaseBy;
+            }
 
-            lastIncreaseBy = temp;
+                lastIncreaseBy = temp;
 
             // Add the difference to the final amount
             amount += increaseBy;
 
-            // Cap the amount to always be less than or equal to the slider's max value
+            // Clamp the amount to always be less than or equal to the slider's max value
             if (amount > slider.maxValue)
             {
                 amount = slider.maxValue;
@@ -116,5 +129,12 @@ public class S_Bar : MonoBehaviour
             targetHit = 1;
         }
         scoreManager.Combo(targetHit);
+    }
+
+    // Called by S_UpgradeManager
+    public void FillRateUnlock(float mult)
+    {
+        fillRateMult = mult;
+        firstFrameWithUpgrade = true;
     }
 }
