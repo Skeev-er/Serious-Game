@@ -18,10 +18,14 @@ public class S_SliderHandle : MonoBehaviour
     private Color screenGreen = new Color32(117, 231, 97, 255);
     private Color screenRed = new Color32(229, 68, 80, 255);
 
+    private AudioSource audioSource;
+    public AudioClip soundEffect;
+
     private void Start()
     {
         topLED.color = screenGreen;
         bottomLED.color = screenRed;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -38,6 +42,7 @@ public class S_SliderHandle : MonoBehaviour
 
             bottomLED.color = screenGreen;
             topLED.color = screenRed;
+            audioSource.PlayOneShot(soundEffect);
 
             for (int i = 0; i < bars.Length; i++)
             {

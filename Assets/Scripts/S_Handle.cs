@@ -17,6 +17,7 @@ public class S_Handle : MonoBehaviour
         }
     }
 
+    // Called by S_GrabObject once object has been clicked on
     void CreateTargetJoint()
     {
         joint = gameObject.AddComponent<TargetJoint2D>();

@@ -15,6 +15,13 @@ public class S_CrankRotations : MonoBehaviour
 
     public S_GrabObject grabObject;
 
+    public AudioClip grinding;
+    public bool goingTheRightWay = false;
+    public bool changeAudio = false;
+    public bool playAudio = false;
+
+    public S_CrankSounds crankAudioSource;
+
     void Start()
     {
         lastPoint = transform.TransformDirection(Vector3.right);
@@ -38,27 +45,70 @@ public class S_CrankRotations : MonoBehaviour
 
         lastPoint = facing;
 
-        if (clockwise && grabObject.dragging) // Intended direction is clockwise
+        if (grabObject.dragging)
         {
-            if (angle < 0) // Going clockwise
+            if (clockwise) // Intended direction is clockwise
             {
-                rotationInDirection -= angle; // Taking away the angle keeps this positive, which is better for use in the progress bar
+                if (angle < 0) // Going clockwise
+                {
+                    rotationInDirection -= angle; // Taking away the angle keeps this positive, which is better for use in the progress bar
+                    goingTheRightWay = true;
+                }
+                else if (angle > 0) // Going anticlockwise
+                {
+                    rotationAwayFromDirection += angle;
+                    goingTheRightWay = false;
+                }
             }
-            else if (angle > 0) // Going anticlockwise
+
+            else if (!clockwise) // Intended direction is anticlockwise
             {
-                rotationAwayFromDirection += angle;
+                if (angle > 0) // Going anticlockwise
+                {
+                    rotationInDirection += angle;
+                    goingTheRightWay = true;
+                }
+                else if (angle < 0) // Going clockwise
+                {
+                    rotationAwayFromDirection -= angle;
+                    goingTheRightWay = false;
+                }
             }
         }
 
-        else if (!clockwise && grabObject.dragging) // Intended direction is anticlockwise
+        ManageAudio();
+    }
+
+    private void ManageAudio()
+    {
+        // If the player is dragging and going the right way, play audio
+        if (grabObject.dragging && goingTheRightWay)
         {
-            if (angle > 0) // Going anticlockwise
+            if (!crankAudioSource.IsPlaying())
             {
-                rotationInDirection += angle;
+                changeAudio = true;
+                playAudio = true;
             }
-            else if (angle < 0) // Going clockwise
+        }
+        // Otherwise, if the player isn't dragging or going in the right way, pause audio
+        else if ((!grabObject.dragging || !goingTheRightWay) && crankAudioSource.IsPlaying())
+        {
+            changeAudio = true;
+            playAudio = false;
+        }
+
+        if (changeAudio)
+        {
+            changeAudio = false;
+
+            if (playAudio)
             {
-                rotationAwayFromDirection -= angle;
+                crankAudioSource.PlaySound();
+            }
+            else
+            {
+                crankAudioSource.PauseSound(name);
+                print(name);
             }
         }
     }
