@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+// This class is attached to the upgrade buttons in the shop display
+// It detects mouse interactions and communicates to the UpgradeManager if the player can buy the clicked upgrade
+
 public class S_UpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private Button upgradeButton;
@@ -15,6 +18,9 @@ public class S_UpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private Color selected = new Color32(34, 69, 29, 255);
     private S_UpgradeManager upgradeManager;
     private string upgradeName;
+
+    private S_SoundManager soundManager;
+    public AudioClip hoverSound, selectSound, incorrectSound;
 
     // Get components on start
     void Start()
@@ -29,6 +35,8 @@ public class S_UpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         upgradeText = GetComponentInChildren<TextMeshProUGUI>();
         upgradeName = upgradeText.name;
+
+        soundManager = GameObject.Find("SoundManager").GetComponent<S_SoundManager>();
     }
 
     private void Clicked()
@@ -40,19 +48,30 @@ public class S_UpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
             gameData.score -= cost;
             upgradeManager.UpgradeSwitch(upgradeName);
 
+            // Play sound effect to give feedback to player
+            soundManager.PlaySound(selectSound);
+
             // Do not allow the upgrade to be interacted with afterwards
             upgradeText.color = selected;
             upgradeButton.interactable = false;
         }
+        else
+        {
+            // Play sound effect to give feedback to player
+            soundManager.PlaySound(incorrectSound);
+        }
 
-        // Reset the score text to reflect the change in score
-        scoreManager.ClearComboText();
+            // Reset the score text to reflect the change in score
+            scoreManager.ClearComboText();
     }
 
     // Show/hide the outline depending on if the mouse hovers over the upgrade or not
     public void OnPointerEnter(PointerEventData eventData)
     {
         highlight.color = greenDisplay;
+
+        // Play sound effect to give feedback to player
+        soundManager.PlaySound(hoverSound);
     }
 
     public void OnPointerExit(PointerEventData eventData)

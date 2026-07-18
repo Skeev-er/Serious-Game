@@ -78,6 +78,7 @@ public class S_CrankRotations : MonoBehaviour
     }
 
     // Called by S_UpgradeManager
+    // Allows the player to make the bar go backwards when spinning the wrong way
     public void ReverseUnlock()
     {
         reverseUpgrade = true;

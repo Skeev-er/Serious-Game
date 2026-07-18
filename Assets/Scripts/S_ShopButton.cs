@@ -19,6 +19,9 @@ public class S_ShopButton : MonoBehaviour
     public GameObject scoreText;
     public GameObject shopScreenPanel;
 
+    public S_SoundManager soundManager;
+    public AudioClip selectSound;
+
     void Start()
     {
         shopButton = GetComponent<Button>();
@@ -62,8 +65,8 @@ public class S_ShopButton : MonoBehaviour
                     shopScreenPanel.SetActive(false);
                 }
 
-                    // Reset variables to allow this to happen next time
-                    clicked = false;
+                // Reset variables to allow this to happen next time
+                clicked = false;
                 openShop = !openShop;
                 t = 0;
                 shopButton.enabled = true;
@@ -81,6 +84,9 @@ public class S_ShopButton : MonoBehaviour
         clicked = true;
         // Do not allow the button to be pressed during the transition
         shopButton.enabled = false;
+
+        // Play sound effect to give feedback to player
+        soundManager.PlaySound(selectSound);
     }
 
     // Make the text visible again after the delay

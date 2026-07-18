@@ -231,7 +231,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::S_UpgradeButton
   gameData: {fileID: 11400000, guid: a2b1741a277eb8a42a34cbe0aeec0d96, type: 2}
   cost: 1
-  upgradeNumber: 1
+  soundManager: {fileID: 0}
+  hoverSound: {fileID: 8300000, guid: ed925ce2062a9e740bb1d14f4fad770a, type: 3}
+  selectSound: {fileID: 8300000, guid: dc0ab21f0f217194d9e74bc7bd480d52, type: 3}
+  incorrectSound: {fileID: 8300000, guid: 7e99325ec10a2234785738641e9ede6a, type: 3}
 --- !u!114 &9046417270536297114
 MonoBehaviour:
   m_ObjectHideFlags: 0

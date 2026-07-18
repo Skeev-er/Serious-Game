@@ -8,7 +8,7 @@ public class S_SliderHandle : MonoBehaviour
     private bool atTop = true;
 
     public float maxHeight = -0.64f; // These depend on the handle's actualy Y position, which is not accurate when a child of the rail
-    public float minHeight = -3.3f;
+    public float minHeight = -3f;
 
     public SpriteRenderer topLED;
     public SpriteRenderer bottomLED;
@@ -17,6 +17,9 @@ public class S_SliderHandle : MonoBehaviour
 
     private Color screenGreen = new Color32(117, 231, 97, 255);
     private Color screenRed = new Color32(229, 68, 80, 255);
+
+    public S_SoundManager soundManager;
+    public AudioClip atBottomSound;
 
     private void Start()
     {
@@ -38,6 +41,9 @@ public class S_SliderHandle : MonoBehaviour
 
             bottomLED.color = screenGreen;
             topLED.color = screenRed;
+
+            // Play sound effect to give feedback to player
+            soundManager.PlaySound(atBottomSound);
 
             for (int i = 0; i < bars.Length; i++)
             {
