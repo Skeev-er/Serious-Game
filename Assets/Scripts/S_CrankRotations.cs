@@ -15,10 +15,20 @@ public class S_CrankRotations : MonoBehaviour
 
     public S_GrabObject grabObject;
 
+    private S_SoundManager soundManager;
+    private bool goingTheRightWay = false;
+    public int soundThreshold = 2;
+    private GameObject handle;
+
+    public AudioClip correctCrankSound, incorrectCrankSound;
+
     void Start()
     {
         lastPoint = transform.TransformDirection(Vector3.right);
         lastPoint.z = 0;
+
+        soundManager = GameObject.Find("SoundManager").GetComponent<S_SoundManager>();
+        handle = transform.GetChild(0).gameObject;
     }
 
     void Update()
@@ -43,10 +53,20 @@ public class S_CrankRotations : MonoBehaviour
             if (angle < 0) // Going clockwise
             {
                 rotationInDirection -= angle; // Taking away the angle keeps this positive, which is better for use in the progress bar
+
+                if (angle < -soundThreshold)
+                {
+                    goingTheRightWay = true;
+                }
+                else
+                {
+                    goingTheRightWay = false;
+                }
             }
             else if (angle > 0) // Going anticlockwise
             {
                 rotationAwayFromDirection += angle;
+                goingTheRightWay = false;
             }
         }
 
@@ -55,10 +75,40 @@ public class S_CrankRotations : MonoBehaviour
             if (angle > 0) // Going anticlockwise
             {
                 rotationInDirection += angle;
+
+                if (angle > soundThreshold)
+                {
+                    goingTheRightWay = true;
+                }
+                else
+                {
+                    goingTheRightWay = false;
+                }
             }
             else if (angle < 0) // Going clockwise
             {
                 rotationAwayFromDirection -= angle;
+            }
+        }
+
+        ManageSound();
+    }
+
+    private void ManageSound()
+    {
+        if (grabObject.GetSelectedObject() == handle.name)
+        {
+            if (grabObject.dragging && goingTheRightWay)
+            {
+                soundManager.PlayLoopingSource(correctCrankSound);
+            }
+            else if (grabObject.dragging && !goingTheRightWay)
+            {
+                soundManager.PlayLoopingSource(incorrectCrankSound);
+            }
+            else if (!grabObject.dragging)
+            {
+                soundManager.PauseLoopingSource();
             }
         }
     }

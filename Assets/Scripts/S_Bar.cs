@@ -12,7 +12,7 @@ public class S_Bar : MonoBehaviour
     public Gradient gradient;
     public Image fill;
 
-    private float decreaseRate = 0.04f;
+    public float decreaseRate = 0.04f;
     private float increaseBy = 0f;
 
     private float amount = 0f;

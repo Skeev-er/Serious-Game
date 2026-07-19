@@ -49,4 +49,16 @@ public class S_GrabObject : MonoBehaviour
             }
         }
     }
+
+    public string GetSelectedObject()
+    {
+        if (objectToSpin != null)
+        {
+            return objectToSpin.name;
+        }
+        else
+        {
+            return null;
+        }
+    }
 }
