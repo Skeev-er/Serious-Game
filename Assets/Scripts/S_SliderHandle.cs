@@ -29,13 +29,13 @@ public class S_SliderHandle : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y >= maxHeight && atTop == false) // At top of rail
+        if (transform.position.y >= maxHeight && atTop == false) // At top of rail (Resetting slider handle)
         {
             atTop = true;
             topLED.color = screenGreen;
             bottomLED.color = screenRed;
         }
-        else if (transform.position.y <= minHeight && atTop == true) // At bottom of rail
+        else if (transform.position.y <= minHeight && atTop == true) // At bottom of rail (Submitting)
         {
             atTop = false;
 
@@ -45,6 +45,7 @@ public class S_SliderHandle : MonoBehaviour
             // Play sound effect to give feedback to player
             soundManager.PlaySound(atBottomSound);
 
+            // Drain every bar
             for (int i = 0; i < bars.Length; i++)
             {
                 bars[i].DrainBars();

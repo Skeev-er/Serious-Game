@@ -205,6 +205,7 @@ public class S_ScoreManager : MonoBehaviour
         scoreText.text = "SCORE: " + gameData.score;
     }
 
+
     // Cause the scoreText to blink a few times
     IEnumerator DelayScreenBlinking(float timeBetweenBlinks)
     {
@@ -230,6 +231,7 @@ public class S_ScoreManager : MonoBehaviour
         // Set the scoreText back to usual
         ClearComboText();
     }
+
 
     // These are called by S_UpgradeManager
     public void MultiComboUnlock()

@@ -698,7 +698,7 @@ GameObject:
   - component: {fileID: 239598430}
   - component: {fileID: 239598429}
   m_Layer: 5
-  m_Name: Higher Layer Canvas
+  m_Name: Higher Layer Canvas (Decorative)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -823,9 +823,10 @@ MonoBehaviour:
   clockwise: 1
   reverseUpgrade: 0
   grabObject: {fileID: 687854194}
+  direction: 0
   soundThreshold: 2
-  correctCrankSound: {fileID: 8300000, guid: 12dd751a47e9c2949bd8c208b3f8c815, type: 3}
-  incorrectCrankSound: {fileID: 8300000, guid: 8045aff6d887aba429d2b44d8c5766fe, type: 3}
+  correctCrankSound: {fileID: 8300000, guid: ffe1d808d4b451b4e9ce2c84b7ad8ad2, type: 3}
+  incorrectCrankSound: {fileID: 8300000, guid: e9bcab0f0ee4cb548a1672febfd32ee0, type: 3}
 --- !u!254 &245422373
 RelativeJoint2D:
   m_ObjectHideFlags: 0
@@ -2128,6 +2129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e8ade16080e1e4d84c997920407643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::S_PlayerMovement
+  body: {fileID: 0}
   dragging: 0
   mouse: {fileID: 33853621}
 --- !u!4 &687854195
@@ -3084,7 +3086,7 @@ Transform:
   m_GameObject: {fileID: 927978425}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.89317, y: -0.26506, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3102,7 +3104,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 12dd751a47e9c2949bd8c208b3f8c815, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3581,6 +3583,50 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 245422376}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1073628499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1073628501}
+  - component: {fileID: 1073628500}
+  m_Layer: 0
+  m_Name: S_Escape
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1073628500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073628499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3181382a7a5a7a34ebb0e9ed3d6312c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::S_Escape
+--- !u!4 &1073628501
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073628499}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.2974, y: -0.04735, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1077794530
 PrefabInstance:
@@ -4271,9 +4317,10 @@ MonoBehaviour:
   clockwise: 0
   reverseUpgrade: 0
   grabObject: {fileID: 687854194}
-  soundThreshold: 2
-  correctCrankSound: {fileID: 8300000, guid: 12dd751a47e9c2949bd8c208b3f8c815, type: 3}
-  incorrectCrankSound: {fileID: 8300000, guid: 8045aff6d887aba429d2b44d8c5766fe, type: 3}
+  direction: 0
+  soundThreshold: 3
+  correctCrankSound: {fileID: 8300000, guid: ffe1d808d4b451b4e9ce2c84b7ad8ad2, type: 3}
+  incorrectCrankSound: {fileID: 8300000, guid: e9bcab0f0ee4cb548a1672febfd32ee0, type: 3}
 --- !u!1 &1320504371
 GameObject:
   m_ObjectHideFlags: 0
@@ -5175,9 +5222,10 @@ MonoBehaviour:
   clockwise: 1
   reverseUpgrade: 0
   grabObject: {fileID: 687854194}
+  direction: 0
   soundThreshold: 2
-  correctCrankSound: {fileID: 8300000, guid: 12dd751a47e9c2949bd8c208b3f8c815, type: 3}
-  incorrectCrankSound: {fileID: 8300000, guid: 8045aff6d887aba429d2b44d8c5766fe, type: 3}
+  correctCrankSound: {fileID: 8300000, guid: ffe1d808d4b451b4e9ce2c84b7ad8ad2, type: 3}
+  incorrectCrankSound: {fileID: 8300000, guid: e9bcab0f0ee4cb548a1672febfd32ee0, type: 3}
 --- !u!254 &1838069419
 RelativeJoint2D:
   m_ObjectHideFlags: 0
@@ -5841,3 +5889,4 @@ SceneRoots:
   - {fileID: 927978428}
   - {fileID: 956448285}
   - {fileID: 1573510869}
+  - {fileID: 1073628501}

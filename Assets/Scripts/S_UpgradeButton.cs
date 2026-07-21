@@ -22,6 +22,7 @@ public class S_UpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private S_SoundManager soundManager;
     public AudioClip hoverSound, selectSound, incorrectSound;
 
+
     // Get components on start
     void Start()
     {
@@ -32,7 +33,6 @@ public class S_UpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         scoreManager = GameObject.Find("ScoreManager").GetComponent<S_ScoreManager>();
         upgradeManager = GameObject.Find("S_UpgradeManager").GetComponent<S_UpgradeManager>();
-
         upgradeText = GetComponentInChildren<TextMeshProUGUI>();
         upgradeName = upgradeText.name;
 

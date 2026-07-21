@@ -26,18 +26,22 @@ public class S_SoundManager : MonoBehaviour
         simpleAudioSource.PlayOneShot(sound);
     }
 
+    // Allows S_CrankRotations to find out if the looping audioSource is playing
     public bool IsLoopingSourcePlaying()
     {
         return loopingAudioSource.isPlaying;
     }
 
+    // Plays the looping crank sound
     public void PlayLoopingSource(AudioClip crankSound)
     {
+        // If it is paused, unpause it
         if (!loopingAudioSource.isPlaying)
         {
             loopingAudioSource.UnPause();
         }
 
+        // If the sound clip is different, play the new sound instead
         if (loopingAudioSource.clip != crankSound)
         {
             loopingAudioSource.clip = crankSound;
@@ -45,6 +49,7 @@ public class S_SoundManager : MonoBehaviour
         }
     }
 
+    // Stop playing the looping crank sound
     public void PauseLoopingSource()
     {
         if (loopingAudioSource.isPlaying)

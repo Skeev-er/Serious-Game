@@ -1,6 +1,7 @@
 using UnityEngine;
 
 // This class is attached to each target on the bars
+// It detects if the bar has entered or left the target, as well as randomly assigning the targets a position
 
 public class S_Target : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class S_Target : MonoBehaviour
 
     private bool barWithinTarget = false;
 
+
     void Start()
     {
         targetJoint = GetComponent<TargetJoint2D>();
@@ -19,6 +21,7 @@ public class S_Target : MonoBehaviour
         RandomPos();
     }
 
+    // Called by S_ScoreManager when at least one target has been scored
     public void RandomPos()
     {
         targetJoint.target = new Vector2 (Random.Range(furthestLeft, furthestRight), transform.position.y);
@@ -35,6 +38,7 @@ public class S_Target : MonoBehaviour
         barWithinTarget = false;
     }
 
+    // Called by S_Bar
     public bool GetBarWithinTarget()
     {
         return barWithinTarget;

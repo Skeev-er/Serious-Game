@@ -8,7 +8,7 @@ using UnityEngine;
 public class S_GrabObject : MonoBehaviour
 {
     private GameObject objectToSpin;
-    private Rigidbody2D body;
+    public Rigidbody2D body;
     public bool dragging;
     public GameObject mouse;
 
@@ -50,6 +50,7 @@ public class S_GrabObject : MonoBehaviour
         }
     }
 
+    // Returns the selected gameObject
     public string GetSelectedObject()
     {
         if (objectToSpin != null)
